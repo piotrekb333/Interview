@@ -1,7 +1,11 @@
 ﻿@using InterviewLists.Application.Models.MakeCar;
+@using InterviewLists.Application.Models.WebServices;
+
 @{
     ViewData["Title"] = "Index";
     var makes = ViewData["CarMakes"] as IEnumerable<CarMakeDto>;
+    var countries = ViewData["Countries"] as IEnumerable<CountriesModel>;
+
 }
 
 <div class="container">
@@ -57,7 +61,11 @@
                     <div class="form-group">
                         <label>Country</label>
                         <select id="CarCountry" class="form-control">
-                            <option value="Poland">Poland</option>
+                            <option value=""></option>
+                            @foreach (var item in countries)
+                            {
+                                <option value="@item.Name">@item.Name</option>
+                            }
                         </select>
                     </div>
                 </div>
@@ -107,7 +115,11 @@
                     <div class="form-group">
                         <label>Country</label>
                         <select id="EditCarCountry" class="form-control">
-                            <option value="Poland">Poland</option>
+                            <option value=""></option>
+                            @foreach (var item in countries)
+                            {
+                                <option value="@item.Name">@item.Name</option>
+                            }
                         </select>
                     </div>
                     <input id="EditCarId" type="hidden" class="form-control">

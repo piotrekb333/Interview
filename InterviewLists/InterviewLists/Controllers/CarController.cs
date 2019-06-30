@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InterviewLists.Application.Interfaces.Services;
+using InterviewLists.Application.Interfaces.WebServices;
 using InterviewLists.Application.Models.Car;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,15 +14,18 @@ namespace InterviewLists.Controllers
         private readonly ICarService _carService;
         private readonly ICarMakeService _makeCarService;
         private readonly ICarModelService _modelCarService;
-        public CarController(ICarService carService, ICarMakeService makeCarService, ICarModelService modelCarService)
+        private readonly ICountriesWebService _countriesWebService;
+        public CarController(ICarService carService, ICarMakeService makeCarService, ICarModelService modelCarService, ICountriesWebService countriesWebService)
         {
             _carService = carService;
             _makeCarService = makeCarService;
             _modelCarService = modelCarService;
+            _countriesWebService = countriesWebService;
         }
         public IActionResult Index()
         {
             ViewData["CarMakes"] = _makeCarService.GetAll();
+            ViewData["Countries"] = _countriesWebService.GetCountries();
             return View();
         }
 

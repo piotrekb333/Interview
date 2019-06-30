@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InterviewLists.Application\InterviewLists.Application.csproj" />
+    <ProjectReference Include="..\InterviewLists.Infrastructure\InterviewLists.Infrastructure.csproj" />
     <ProjectReference Include="..\InterviewLists.Persistence\InterviewLists.Persistence.csproj" />
   </ItemGroup>
 

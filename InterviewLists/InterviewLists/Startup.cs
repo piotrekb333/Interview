@@ -8,6 +8,8 @@ using InterviewLists.Application.Implementations.Services;
 using InterviewLists.Application.Infrastructure.AutoMapper;
 using InterviewLists.Application.Interfaces;
 using InterviewLists.Application.Interfaces.Services;
+using InterviewLists.Application.Interfaces.WebServices;
+using InterviewLists.Infrastructure.WebServices;
 using InterviewLists.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,6 +40,7 @@ namespace InterviewLists
             services.AddTransient<ITripService, TripService>();
             services.AddTransient<ICarMakeService, CarMakeService>();
             services.AddTransient<ICarModelService, CarModelService>();
+            services.AddTransient<ICountriesWebService, CountriesWebService>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
