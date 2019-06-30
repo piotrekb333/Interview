@@ -69,7 +69,7 @@ namespace InterviewLists.Application.Implementations.Services
             var entity = _mapper.Map<ArtistDto>(_dbContext.Artists.SingleOrDefault(m => m.Id == id));
             return entity;
         }
-        public IEnumerable<ArtistDto> Getall()
+        public IEnumerable<ArtistDto> GetAll()
         {
             var entities = _mapper.Map<IEnumerable<ArtistDto>>(_dbContext.Artists);
             return entities;

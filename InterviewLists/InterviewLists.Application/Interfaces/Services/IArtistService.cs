@@ -12,6 +12,6 @@ namespace InterviewLists.Application.Interfaces.Services
         void Update(ArtistUpdate model);
         void Delete(int id);
         ArtistDto GetById(int id);
-        IEnumerable<ArtistDto> Getall();
+        IEnumerable<ArtistDto> GetAll();
     }
 }
