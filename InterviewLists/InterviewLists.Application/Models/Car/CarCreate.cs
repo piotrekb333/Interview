@@ -8,7 +8,6 @@ namespace InterviewLists.Application.Models.Car
     {
         public int CarMakeId { get; set; }
         public int CarModelId { get; set; }
-        public int EmployeeId { get; set; }
         public decimal Price { get; set; }
         public DateTime DateOfProduction { get; set; }
         public string Country { get; set; }
