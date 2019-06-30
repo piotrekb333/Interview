@@ -1,0 +1,32 @@
+﻿@model IEnumerable<InterviewLists.Application.Models.Car.CarDto>
+
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Date of production</th>
+            <th>Country</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CarMakeTitle</td>
+                <td>@item.CarModelTitle</td>
+                <td>@item.Price</td>
+                <td>@item.DateOfProduction</td>
+                <td>@item.Country</td>
+                <td>
+                    <a href="#" data-id="@item.Id" class="edit edit-car"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                    <a href="#" data-id="@item.Id" class="delete delete-car" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

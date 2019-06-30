@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace InterviewLists.Application.Models.Car
+{
+    public class CarUpdate
+    {
+        public int Id { get; set; }
+        public int CarMakeId { get; set; }
+        public int CarModelId { get; set; }
+        public int EmployeeId { get; set; }
+        public decimal Price { get; set; }
+        public DateTime DateOfProduction { get; set; }
+        public string Country { get; set; }
+    }
+}
