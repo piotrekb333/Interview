@@ -69,7 +69,7 @@ namespace InterviewLists.Application.Implementations.Services
             var entity = _mapper.Map<TripDto>(_dbContext.Trips.SingleOrDefault(m => m.Id == id));
             return entity;
         }
-        public IEnumerable<TripDto> Getall()
+        public IEnumerable<TripDto> GetAll()
         {
             var entities = _mapper.Map<IEnumerable<TripDto>>(_dbContext.Trips);
             return entities;

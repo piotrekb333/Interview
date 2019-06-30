@@ -12,6 +12,6 @@ namespace InterviewLists.Application.Interfaces.Services
         void Update(TripUpdate model);
         void Delete(int id);
         TripDto GetById(int id);
-        IEnumerable<TripDto> Getall();
+        IEnumerable<TripDto> GetAll();
     }
 }

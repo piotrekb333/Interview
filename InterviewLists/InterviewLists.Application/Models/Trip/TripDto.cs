@@ -1,10 +1,11 @@
-﻿using System;
+﻿using InterviewLists.Application.Interfaces.Mapping;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace InterviewLists.Application.Models.Trip
 {
-    public class TripDto
+    public class TripDto : IMapFrom<Domain.Entities.Trip>
     {
         public int Id { get; set; }
         public decimal Price { get; set; }
