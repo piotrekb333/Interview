@@ -38,6 +38,10 @@ namespace InterviewLists.Controllers
         [HttpPost]
         public IActionResult Create([FromForm]CarCreate model)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             _carService.Create(model);
             return Ok();
         }
@@ -45,6 +49,10 @@ namespace InterviewLists.Controllers
         [HttpPut]
         public IActionResult Update(CarUpdate model)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             _carService.Update(model);
             return Ok();
         }

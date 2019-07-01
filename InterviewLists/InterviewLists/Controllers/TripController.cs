@@ -33,6 +33,10 @@ namespace InterviewLists.Controllers
         [HttpPost]
         public IActionResult Create([FromForm]TripCreate model)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             _tripService.Create(model);
             return Ok();
         }
@@ -40,6 +44,10 @@ namespace InterviewLists.Controllers
         [HttpPut]
         public IActionResult Update(TripUpdate model)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             _tripService.Update(model);
             return Ok();
         }

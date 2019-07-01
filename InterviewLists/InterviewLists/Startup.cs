@@ -4,13 +4,19 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
+using FluentValidation;
 using InterviewLists.Application.Implementations.Services;
 using InterviewLists.Application.Infrastructure.AutoMapper;
 using InterviewLists.Application.Interfaces;
 using InterviewLists.Application.Interfaces.Services;
 using InterviewLists.Application.Interfaces.WebServices;
+using InterviewLists.Application.Models.Artist;
+using InterviewLists.Application.Models.Car;
+using InterviewLists.Application.Models.Trip;
 using InterviewLists.Infrastructure.WebServices;
 using InterviewLists.Persistence;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -19,6 +25,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using RestSharp;
 
 namespace InterviewLists
@@ -44,6 +51,14 @@ namespace InterviewLists
             services.AddTransient<ICountriesWebService, CountriesWebService>();
             services.AddTransient<IRestClient, RestClient>();
 
+            services.AddTransient<IValidator<CarCreate>, CarCreateValidator>();
+            services.AddTransient<IValidator<CarUpdate>, CarUpdateValidator>();
+            services.AddTransient<IValidator<ArtistCreate>, ArtistCreateValidator>();
+            services.AddTransient<IValidator<ArtistUpdate>, ArtistUpdateValidator>();
+            services.AddTransient<IValidator<TripCreate>, TripCreateValidator>();
+            services.AddTransient<IValidator<TripUpdate>, TripUpdateValidator>();
+
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -52,6 +67,23 @@ namespace InterviewLists
             });
             services.AddDbContext<IInterviewDbContext, InterviewDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("InterviewDatabase")));
+
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+            .AddOpenIdConnect(options =>
+            {
+                options.Authority = "https://login.microsoftonline.com/92904ab7-965c-404f-abfb-d523297408fa";
+                options.ClientId = "f97f3d45-d438-4c74-82d0-54dd1a2f2bcd";
+                options.ResponseType = OpenIdConnectResponseType.IdToken;
+                options.CallbackPath = "/auth/signin-callback";
+                options.SignedOutRedirectUri = "https://localhost:44379/";
+                options.TokenValidationParameters.NameClaimType = "name";
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
