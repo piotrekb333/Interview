@@ -15,7 +15,7 @@ namespace InterviewLists.Application.Tests.Infrastructure
             {
                 mc.AddProfile(new AutoMapperProfile());
             });
-
+            
             return mappingConfig.CreateMapper();
         }
     }

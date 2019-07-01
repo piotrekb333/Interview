@@ -23,6 +23,27 @@ namespace InterviewLists.Application.Tests.Infrastructure
                 new Artist { FirstName="test",Id=2 },
                 new Artist { FirstName="test2",Id=3 },
             });
+
+            context.Trips.AddRange(new[] {
+                new Trip { Country="test",Id=2 },
+                new Trip { Country="test2",Id=3 },
+            });
+
+            context.CarMakes.AddRange(new[] {
+                new CarMake { Title="testmake1",Id=2 },
+                new CarMake { Title="testmake2",Id=3 },
+            });
+
+            context.CarModels.AddRange(new[] {
+                new CarModel { Title="testmodel1",Id=2,CarMakeId=2 },
+                new CarModel { Title="testmodel2",Id=3,CarMakeId=3 },
+            });
+
+            context.Cars.AddRange(new[] {
+                new Car { Country="test",Id=2,CarMakeId=2,CarModelId=2 },
+                new Car { Country="test2",Id=3,CarMakeId=3,CarModelId=3 },
+            });
+
             context.SaveChanges();
 
             return context;

@@ -10,9 +10,12 @@ namespace InterviewLists.Infrastructure.WebServices
     public class CountriesWebService : ICountriesWebService
     {
         private readonly IRestClient _client;
-        public CountriesWebService()
+        public CountriesWebService(IRestClient client)
         {
-            _client = new RestClient("https://restcountries.eu/");
+            //_client = new RestClient("https://restcountries.eu/");
+            _client = client;
+            var uriBuilder=new UriBuilder("https://restcountries.eu/");
+            _client.BaseUrl = uriBuilder.Uri;
         }
 
         public IEnumerable<CountriesModel> GetCountries()
