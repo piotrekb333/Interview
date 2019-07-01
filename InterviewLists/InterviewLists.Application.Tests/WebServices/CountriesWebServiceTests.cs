@@ -21,6 +21,7 @@ namespace InterviewLists.Application.Tests.WebServices
 
         }
 
+        [Fact]
         public void GetCountriesTest()
         {
             var mockFactory = new Mock<IRestClient>();
