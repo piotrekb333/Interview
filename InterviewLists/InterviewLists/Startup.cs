@@ -68,24 +68,39 @@ namespace InterviewLists
             services.AddDbContext<IInterviewDbContext, InterviewDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("InterviewDatabase")));
 
-
+            /*
             services.AddAuthentication(options =>
             {
-                options.DefaultAuthenticateScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
                 options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
             })
+            .AddCookie()
             .AddOpenIdConnect(options =>
             {
                 options.Authority = "https://login.microsoftonline.com/92904ab7-965c-404f-abfb-d523297408fa";
                 options.ClientId = "f97f3d45-d438-4c74-82d0-54dd1a2f2bcd";
                 options.ResponseType = OpenIdConnectResponseType.IdToken;
-                options.CallbackPath = "/auth/signin-callback";
-                options.SignedOutRedirectUri = "https://localhost:44379/";
+                options.CallbackPath = "/authorization/callback";
+                options.SignedOutRedirectUri = "https://localhost:44354";
                 options.TokenValidationParameters.NameClaimType = "name";
+                
+            });
+            */
+            /*
+            services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
+        .AddAzureAD(options => Configuration.Bind("AzureAd", options));
+
+            services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
+            {
+                options.Authority = options.Authority + "/v2.0/";         // Microsoft identity platform
+
+                options.TokenValidationParameters.ValidateIssuer = false; // accept several tenants (here simplified)
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -105,7 +120,7 @@ namespace InterviewLists
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

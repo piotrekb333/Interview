@@ -18,6 +18,11 @@ namespace InterviewLists.Controllers
             return Challenge(new AuthenticationProperties { RedirectUri = "/" });
         }
 
+        public IActionResult Callback()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpPost]
         public async Task Logout()
         {
