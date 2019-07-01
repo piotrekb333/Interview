@@ -32,6 +32,9 @@ function LoadArtist(id) {
 }
 
 function SaveArtist() {
+    if (!$("#add-artist-form").valid()) {
+        return;
+    }
     var data = {
         FirstName: $("#ArtistFirstName").val(),
         LastName: $("#ArtistLastName").val(),
@@ -55,6 +58,9 @@ function SaveArtist() {
 }
 
 function UpdateArtist() {
+    if (!$("#edit-artist-form").valid()) {
+        return;
+    }
     var data = {
         FirstName: $("#EditArtistFirstName").val(),
         LastName: $("#EditArtistLastName").val(),
