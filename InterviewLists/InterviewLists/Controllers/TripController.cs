@@ -31,7 +31,7 @@ namespace InterviewLists.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromForm]TripCreate model)
+        public IActionResult Create(TripCreate model)
         {
             if (!ModelState.IsValid)
             {

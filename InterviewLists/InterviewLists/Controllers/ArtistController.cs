@@ -31,7 +31,7 @@ namespace InterviewLists.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromForm]ArtistCreate model)
+        public IActionResult Create(ArtistCreate model)
         {
             if (!ModelState.IsValid)
             {

@@ -36,7 +36,7 @@ namespace InterviewLists.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromForm]CarCreate model)
+        public IActionResult Create(CarCreate model)
         {
             if (!ModelState.IsValid)
             {

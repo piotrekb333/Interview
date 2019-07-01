@@ -30,7 +30,7 @@
 <div id="addEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form id="add-car-form">
                 <div class="modal-header">
                     <h4 class="modal-title">Add Car</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -38,15 +38,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Price</label>
-                        <input id="CarPrice" type="number" class="form-control">
+                        <input id="CarPrice" name="CarPrice" type="number" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Date</label>
-                        <input id="CarDate" type="text" class="form-control date">
+                        <input id="CarDate" name="CarDate" type="text" class="form-control date" required>
                     </div>
                     <div class="form-group">
                         <label>Make</label>
-                        <select id="CarMake" class="form-control">
+                        <select id="CarMake" name="CarMake" class="form-control" required>
                             <option value=""></option>
 
                             @foreach (var item in makes)
@@ -57,11 +57,11 @@
                     </div>
                     <div class="form-group">
                         <label>Model</label>
-                        <select id="CarModel" class="form-control"></select>
+                        <select id="CarModel" name="CarModel" class="form-control" required></select>
                     </div>
                     <div class="form-group">
                         <label>Country</label>
-                        <select id="CarCountry" class="form-control">
+                        <select id="CarCountry" name="CarCountry" class="form-control" required>
                             <option value=""></option>
                             @foreach (var item in countries)
                             {
@@ -84,7 +84,7 @@
 <div id="editCarModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form id="edit-car-form">
                 <div class="modal-header">
                     <h4 class="modal-title">Edit Car</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -92,15 +92,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Price</label>
-                        <input id="EditCarPrice" type="number" class="form-control">
+                        <input id="EditCarPrice" name="EditCarPrice" type="number" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Date</label>
-                        <input id="EditCarDate" type="text" class="form-control date">
+                        <input id="EditCarDate" name="EditCarDate" type="text" class="form-control date" required>
                     </div>
                     <div class="form-group">
                         <label>Make</label>
-                        <select id="EditCarMake" class="form-control">
+                        <select id="EditCarMake" name="EditCarMake" class="form-control" required>
                             <option value=""></option>
 
                             @foreach (var item in makes)
@@ -111,11 +111,11 @@
                     </div>
                     <div class="form-group">
                         <label>Model</label>
-                        <select id="EditCarModel" class="form-control"></select>
+                        <select id="EditCarModel" name="EditCarModel" class="form-control" required></select>
                     </div>
                     <div class="form-group">
                         <label>Country</label>
-                        <select id="EditCarCountry" class="form-control">
+                        <select id="EditCarCountry" name="EditCarCountry" class="form-control" required>
                             <option value=""></option>
                             @foreach (var item in countries)
                             {

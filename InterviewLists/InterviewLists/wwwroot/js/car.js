@@ -65,6 +65,9 @@ function LoadCar(id) {
 }
 
 function SaveCar() {
+    if (!$("#add-car-form").valid()) {
+        return;
+    }
     var data = {
         CarMakeId: $("#CarMake").val(),
         CarModelId: $("#CarModel").val(),
@@ -89,6 +92,9 @@ function SaveCar() {
 }
 
 function UpdateCar() {
+    if (!$("#edit-car-form").valid()) {
+        return;
+    }
     var data = {
         CarMakeId: $("#EditCarMake").val(),
         CarModelId: $("#EditCarModel").val(),

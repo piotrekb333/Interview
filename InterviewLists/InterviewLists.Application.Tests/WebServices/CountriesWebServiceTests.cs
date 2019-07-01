@@ -25,11 +25,10 @@ namespace InterviewLists.Application.Tests.WebServices
         public void GetCountriesTest()
         {
             var mockFactory = new Mock<IRestClient>();
-            IRestResponse response = new RestResponse();
+            IRestResponse<List<CountriesModel>> response = new RestResponse<List<CountriesModel>>();
             models = new List<CountriesModel> { new CountriesModel { Name = "test" }, new CountriesModel { Name = "test2" } };
-            var json = JsonConvert.SerializeObject(models);
-            response.Content = json;
-            mockFactory.Setup(m => m.Execute(It.IsAny<IRestRequest>())).Returns(response);
+            response.Data = models;
+            mockFactory.Setup(m => m.Execute<List<CountriesModel>>(It.IsAny<IRestRequest>())).Returns(response);
             ICountriesWebService _countriesWebService = new CountriesWebService(mockFactory.Object);
             var result=_countriesWebService.GetCountries();
 

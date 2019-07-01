@@ -32,6 +32,9 @@ function LoadTrip(id) {
 }
 
 function SaveTrip() {
+    if (!$("#add-trip-form").valid()) {
+        return;
+    }
     var data = {
         Price: $("#TripPrice").val(),
         DateStart: $("#TripDateFrom").val(),
@@ -55,6 +58,9 @@ function SaveTrip() {
 }
 
 function UpdateTrip() {
+    if (!$("#edit-trip-form").valid()) {
+        return;
+    }
     var data = {
         Price: $("#EditTripPrice").val(),
         DateStart: $("#EditTripDateFrom").val(),
