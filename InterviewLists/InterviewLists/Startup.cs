@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RestSharp;
 
 namespace InterviewLists
 {
@@ -41,6 +42,7 @@ namespace InterviewLists
             services.AddTransient<ICarMakeService, CarMakeService>();
             services.AddTransient<ICarModelService, CarModelService>();
             services.AddTransient<ICountriesWebService, CountriesWebService>();
+            services.AddTransient<IRestClient, RestClient>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
