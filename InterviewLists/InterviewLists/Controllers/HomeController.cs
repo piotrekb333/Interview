@@ -5,13 +5,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using InterviewLists.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace InterviewLists.Controllers
 {
+    //[Authorize]
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
+            var dd=User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var dgdg=User.FindAll("groups").ToList();
             return View();
         }
 

@@ -19,7 +19,7 @@
                 <td>@item.CarMakeTitle</td>
                 <td>@item.CarModelTitle</td>
                 <td>@item.Price</td>
-                <td>@item.DateOfProduction</td>
+                <td>@item.DateOfProduction.ToShortDateString()</td>
                 <td>@item.Country</td>
                 <td>
                     <a href="#" data-id="@item.Id" class="edit edit-car"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>

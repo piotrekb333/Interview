@@ -16,8 +16,8 @@
         {
             <tr>
                 <td>@item.Price</td>
-                <td>@item.DateStart</td>
-                <td>@item.DateEnd</td>
+                <td>@item.DateStart.ToShortDateString()</td>
+                <td>@item.DateEnd.ToShortDateString()</td>
                 <td>@item.Country</td>
                 <td>
                     <a href="#" data-id="@item.Id" class="edit edit-trip"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
