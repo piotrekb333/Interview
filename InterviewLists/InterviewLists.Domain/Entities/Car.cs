@@ -13,5 +13,7 @@ namespace InterviewLists.Domain.Entities
         public string Country { get; set; }
         public CarMake CarMake { get; set; }
         public CarModel CarModel { get; set; }
+        public string UserId { get; set; }
+
     }
 }

@@ -10,5 +10,7 @@ namespace InterviewLists.Domain.Entities
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
         public string Country { get; set; }
+        public string UserId { get; set; }
+
     }
 }

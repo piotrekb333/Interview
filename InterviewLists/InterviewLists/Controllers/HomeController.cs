@@ -10,18 +10,18 @@ using System.Security.Claims;
 
 namespace InterviewLists.Controllers
 {
-    //[Authorize]
+    
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
-            var dd=User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var dgdg=User.FindAll("groups").ToList();
             return View();
         }
 
+        [Authorize("Admin")]
         public IActionResult Privacy()
         {
+            var dgdg = User.FindAll("groups").ToList();
             return View();
         }
 

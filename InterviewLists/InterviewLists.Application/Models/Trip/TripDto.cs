@@ -12,5 +12,8 @@ namespace InterviewLists.Application.Models.Trip
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
         public string Country { get; set; }
+        public string UserId { get; set; }
+        public bool AllowModifications { get; set; } = false;
+
     }
 }

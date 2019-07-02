@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using InterviewLists.Application.Interfaces.Services;
 using InterviewLists.Application.Interfaces.WebServices;
 using InterviewLists.Application.Models.Car;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InterviewLists.Controllers
@@ -31,36 +33,39 @@ namespace InterviewLists.Controllers
 
         public IActionResult GetAllTable()
         {
-            var data = _carService.GetAll();
+            var data = _carService.GetAll(User.Claims);
             return PartialView("Views/Shared/Car/_carTable.cshtml",data);
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Create(CarCreate model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            _carService.Create(model);
+            _carService.Create(model, User.FindFirst(ClaimTypes.NameIdentifier).Value);
             return Ok();
         }
 
         [HttpPut]
+        [Authorize]
         public IActionResult Update(CarUpdate model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            _carService.Update(model);
+            _carService.Update(model, User.Claims);
             return Ok();
         }
 
         [HttpDelete]
+        [Authorize]
         public IActionResult Delete(int id)
         {
-            _carService.Delete(id);
+            _carService.Delete(id, User.Claims);
             return Ok();
         }
 
@@ -70,9 +75,10 @@ namespace InterviewLists.Controllers
             return Json(data);
         }
 
+        [Authorize]
         public IActionResult GetCarById(int id)
         {
-            var data = _carService.GetById(id);
+            var data = _carService.GetById(id, User.Claims);
             return Json(data);
         }
         

@@ -20,12 +20,12 @@ namespace InterviewLists.Application.Tests.Infrastructure
             context.Database.EnsureCreated();
 
             context.Artists.AddRange(new[] {
-                new Artist { FirstName="test",Id=2 },
+                new Artist { FirstName="test",Id=2,UserId="123" },
                 new Artist { FirstName="test2",Id=3 },
             });
 
             context.Trips.AddRange(new[] {
-                new Trip { Country="test",Id=2 },
+                new Trip { Country="test",Id=2,UserId="123" },
                 new Trip { Country="test2",Id=3 },
             });
 
@@ -40,7 +40,7 @@ namespace InterviewLists.Application.Tests.Infrastructure
             });
 
             context.Cars.AddRange(new[] {
-                new Car { Country="test",Id=2,CarMakeId=2,CarModelId=2 },
+                new Car { Country="test",Id=2,CarMakeId=2,CarModelId=2,UserId="123" },
                 new Car { Country="test2",Id=3,CarMakeId=3,CarModelId=3 },
             });
 

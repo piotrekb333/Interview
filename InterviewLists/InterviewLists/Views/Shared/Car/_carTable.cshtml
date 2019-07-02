@@ -22,8 +22,11 @@
                 <td>@item.DateOfProduction.ToShortDateString()</td>
                 <td>@item.Country</td>
                 <td>
+                @if (item.AllowModifications)
+                {
                     <a href="#" data-id="@item.Id" class="edit edit-car"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                     <a href="#" data-id="@item.Id" class="delete delete-car" ><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                }
                 </td>
             </tr>
         }

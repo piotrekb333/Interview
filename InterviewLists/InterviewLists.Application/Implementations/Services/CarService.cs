@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 
 namespace InterviewLists.Application.Implementations.Services
@@ -16,14 +17,16 @@ namespace InterviewLists.Application.Implementations.Services
     {
         private readonly IInterviewDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IAuthorizationService _authorizationService;
 
-        public CarService(IInterviewDbContext dbContext, IMapper mapper)
+        public CarService(IInterviewDbContext dbContext, IMapper mapper, IAuthorizationService authorizationService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _authorizationService = authorizationService;
         }
 
-        public void Create(CarCreate model)
+        public void Create(CarCreate model, string userId)
         {
             var entity = new Car
             {
@@ -31,19 +34,23 @@ namespace InterviewLists.Application.Implementations.Services
                 CarModelId=model.CarModelId,
                 DateOfProduction=model.DateOfProduction,
                 Price=model.Price,
-                Country = model.Country
+                Country = model.Country,
+                UserId = userId
             };
 
             _dbContext.Cars.Add(entity);
             _dbContext.SaveChanges();
         }
-        public void Update(CarUpdate model)
+        public void Update(CarUpdate model, IEnumerable<Claim> claims)
         {
             var entity = _dbContext.Cars.SingleOrDefault(m => m.Id == model.Id);
             if (entity == null)
             {
                 throw new NotFoundException(nameof(Car), model.Id);
             }
+
+            if (!_authorizationService.AllowModifyEntity(claims, entity.UserId))
+                throw new NotAuthorizedException();
 
             entity.CarMakeId = model.CarMakeId;
             entity.Country = model.Country;
@@ -55,26 +62,35 @@ namespace InterviewLists.Application.Implementations.Services
             _dbContext.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(int id, IEnumerable<Claim> claims)
         {
             var entity = _dbContext.Cars.SingleOrDefault(m => m.Id == id);
             if (entity == null)
             {
                 throw new NotFoundException(nameof(Artist), id);
-
             }
+
+            if (!_authorizationService.AllowModifyEntity(claims, entity.UserId))
+                throw new NotAuthorizedException();
+
             _dbContext.Cars.Remove(entity);
             _dbContext.SaveChanges();
         }
 
-        public CarDto GetById(int id)
+        public CarDto GetById(int id, IEnumerable<Claim> claims)
         {
             var entity = _mapper.Map<CarDto>(_dbContext.Cars.SingleOrDefault(m => m.Id == id));
+
+            if (!_authorizationService.AllowModifyEntity(claims, entity.UserId))
+                throw new NotAuthorizedException();
+
             return entity;
         }
-        public IEnumerable<CarDto> GetAll()
+        public IEnumerable<CarDto> GetAll(IEnumerable<Claim> claims)
         {
             var entities = _mapper.Map<IEnumerable<CarDto>>(_dbContext.Cars.Include(m=>m.CarMake).Include(m=>m.CarModel).AsNoTracking());
+            entities = entities.Select(c => { c.AllowModifications = _authorizationService.AllowModifyEntity(claims, c.UserId); return c; }).ToList();
+
             return entities;
         }
     }

@@ -16,6 +16,8 @@ namespace InterviewLists.Application.Models.Car
         public string Country { get; set; }
         public string CarMakeTitle { get; set; }
         public string CarModelTitle { get; set; }
+        public string UserId { get; set; }
+        public bool AllowModifications { get; set; } = false;
 
         public void CreateMappings(Profile configuration)
         {

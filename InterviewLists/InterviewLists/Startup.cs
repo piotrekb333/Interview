@@ -15,6 +15,7 @@ using InterviewLists.Application.Models.Car;
 using InterviewLists.Application.Models.Trip;
 using InterviewLists.Infrastructure.WebServices;
 using InterviewLists.Persistence;
+using InterviewLists.Roles;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -50,6 +51,7 @@ namespace InterviewLists
             services.AddTransient<ITripService, TripService>();
             services.AddTransient<ICarMakeService, CarMakeService>();
             services.AddTransient<ICarModelService, CarModelService>();
+            services.AddTransient<IAuthorizationService, AuthorizationService>();
             services.AddTransient<ICountriesWebService, CountriesWebService>();
             services.AddTransient<IRestClient, RestClient>();
 
@@ -69,7 +71,12 @@ namespace InterviewLists
             });
             services.AddDbContext<IInterviewDbContext, InterviewDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("InterviewDatabase")));
-            
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(AdminRole.Name,
+                                  AdminRole.Build);
+            });
             services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
                 .AddAzureAD(options => Configuration.Bind("AzureAd", options));
             

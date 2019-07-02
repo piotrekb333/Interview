@@ -12,5 +12,7 @@ namespace InterviewLists.Application.Models.Artist
         public string LastName { get; set; }
         public DateTime Birthday { get; set; }
         public string Country { get; set; }
+        public string UserId { get; set; }
+        public bool AllowModifications { get; set; } = false;
     }
 }
