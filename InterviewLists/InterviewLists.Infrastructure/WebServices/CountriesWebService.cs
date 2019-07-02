@@ -12,9 +12,8 @@ namespace InterviewLists.Infrastructure.WebServices
         private readonly IRestClient _client;
         public CountriesWebService(IRestClient client)
         {
-            //_client = new RestClient("https://restcountries.eu/");
             _client = client;
-            var uriBuilder=new UriBuilder("https://restcountries.eu/");
+            var uriBuilder = new UriBuilder("https://restcountries.eu/");
             _client.BaseUrl = uriBuilder.Uri;
         }
 

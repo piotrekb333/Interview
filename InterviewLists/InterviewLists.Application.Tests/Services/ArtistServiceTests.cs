@@ -30,8 +30,7 @@ namespace InterviewLists.Application.Tests.Services
 
         [Fact]
         public void CreateTest()
-        {
-            
+        {           
             _artistService.Create(new Models.Artist.ArtistCreate
             {
                 FirstName = "testnew",               

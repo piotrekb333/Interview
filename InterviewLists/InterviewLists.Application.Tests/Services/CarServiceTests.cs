@@ -32,8 +32,7 @@ namespace InterviewLists.Application.Tests.Services
 
         [Fact]
         public void CreateTest()
-        {
-            
+        {            
             _carService.Create(new Models.Car.CarCreate
             {
                 Country = "testnew",
