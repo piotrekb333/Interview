@@ -18,10 +18,8 @@ namespace InterviewLists.Controllers
             return View();
         }
 
-        [Authorize("Admin")]
         public IActionResult Privacy()
         {
-            var dgdg = User.FindAll("groups").ToList();
             return View();
         }
 

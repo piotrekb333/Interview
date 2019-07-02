@@ -3,7 +3,6 @@ using InterviewLists.Application.Exceptions;
 using InterviewLists.Application.Interfaces;
 using InterviewLists.Application.Interfaces.Services;
 using InterviewLists.Application.Models.Artist;
-using InterviewLists.Application.Roles;
 using InterviewLists.Domain.Entities;
 using System;
 using System.Collections.Generic;

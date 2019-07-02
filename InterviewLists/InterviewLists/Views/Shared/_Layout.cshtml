@@ -32,6 +32,20 @@
 </head>
 <body>
     <div class="container">
+        <div id="cookieConsent" class="alert alert-info alert-dismissible fade show text-right" role="alert">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <form action="authorization/logout" method="post">
+                    <button  class="btn btn-primary" type="submit">Logout</button>
+                </form>
+            }
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <form action="/Authorization/login" method="post">
+                    <button class="btn btn-primary" type="submit">Login</button>
+                </form>
+            }
+        </div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
